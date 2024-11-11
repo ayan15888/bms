@@ -1,5 +1,7 @@
 'use client'
 
+
+
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -26,11 +28,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
-      <header className={`sticky top-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
+      <header className={`sticky top-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-white/20 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-2">
-            <BookOpen className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-blue-600">UniBook Exchange</span>
+            <BookOpen className="h-8 w-8 text-gray-600" />
+            <span className="text-2xl font-bold text-gray-600">UniBook</span>
           </Link>
           <nav className="space-x-4">
             <Button asChild variant="ghost">
@@ -50,8 +52,8 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">University Book Exchange</h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Buy and sell used textbooks within your university community!</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 font-serif">University Book Exchange</h1>
+            <p className="text-xl  text-gray-600 mb-8 max-w-2xl mx-auto">Buy and sell used textbooks within your university community!</p>
             <div className="flex max-w-md mx-auto">
               <Input type="text" placeholder="Search for books..." className="rounded-r-none" />
               <Button type="submit" className="rounded-l-none">
