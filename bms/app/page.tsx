@@ -1,7 +1,5 @@
 'use client'
 
-
-
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -13,10 +11,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { BookOpen, Search, DollarSign, Users, Truck, Shield } from 'lucide-react'
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { BookOpen, Search, DollarSign, Users, Truck, Shield, Menu } from 'lucide-react'
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +30,12 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const navItems = [
+    { href: "/about", label: "About" },
+  
+    { href: "/sell", label: "Sell" },
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
       <header className={`sticky top-0 z-50 transition-all duration-200 ${isScrolled ? 'bg-white/20 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
@@ -34,7 +44,12 @@ export default function Home() {
             <BookOpen className="h-8 w-8 text-gray-600" />
             <span className="text-2xl font-bold text-gray-600">UniBook</span>
           </Link>
-          <nav className="space-x-4">
+          <nav className="hidden md:flex space-x-4">
+            {navItems.map((item) => (
+              <Button key={item.href} asChild variant="ghost">
+                <Link href={item.href}>{item.label}</Link>
+              </Button>
+            ))}
             <Button asChild variant="ghost">
               <Link href="/login">Log In</Link>
             </Button>
@@ -42,6 +57,29 @@ export default function Home() {
               <Link href="/register">Sign Up</Link>
             </Button>
           </nav>
+          <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left">
+              <div className="flex flex-col space-y-4 mt-4">
+                {navItems.map((item) => (
+                  <Button key={item.href} asChild variant="ghost" onClick={() => setIsSidebarOpen(false)}>
+                    <Link href={item.href}>{item.label}</Link>
+                  </Button>
+                ))}
+                <Button asChild variant="ghost" onClick={() => setIsSidebarOpen(false)}>
+                  <Link href="/login">Log In</Link>
+                </Button>
+                <Button asChild onClick={() => setIsSidebarOpen(false)}>
+                  <Link href="/register">Sign Up</Link>
+                </Button>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
@@ -53,7 +91,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 font-serif">University Book Exchange</h1>
-            <p className="text-xl  text-gray-600 mb-8 max-w-2xl mx-auto">Buy and sell used textbooks within your university community!</p>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Buy and sell used textbooks within your university community!</p>
             <div className="flex max-w-md mx-auto">
               <Input type="text" placeholder="Search for books..." className="rounded-r-none" />
               <Button type="submit" className="rounded-l-none">
@@ -133,8 +171,7 @@ export default function Home() {
               <h3 className="text-lg font-semibold mb-2">Quick Links</h3>
               <ul className="space-y-2">
                 <li><Link href="/about" className="text-gray-600 hover:text-blue-600">About Us</Link></li>
-                <li><Link href="/faq" className="text-gray-600 hover:text-blue-600">FAQ</Link></li>
-                <li><Link href="/contact" className="text-gray-600 hover:text-blue-600">Contact</Link></li>
+              
               </ul>
             </div>
             <div>
@@ -162,7 +199,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 border-t border-gray-200 pt-8 text-center">
-            <p className="text-sm text-gray-600">&copy; 2023 UniBook Exchange. All rights reserved.</p>
+            <p className="text-sm text-gray-600">&copy; 2024 UniBook Exchange. All rights reserved.</p>
           </div>
         </div>
       </footer>
