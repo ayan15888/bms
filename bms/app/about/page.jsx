@@ -145,7 +145,7 @@ export default function AboutPage() {
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-4">Ready to start saving?</h2>
         <Button asChild size="lg">
-          <Link href="/signup">Join Student Book Exchange</Link>
+          <Link href="/register">Join Student Book Exchange</Link>
         </Button>
       </div>
     </div>
