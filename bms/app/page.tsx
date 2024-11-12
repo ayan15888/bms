@@ -33,7 +33,7 @@ export default function Home() {
   const navItems = [
     { href: "/about", label: "About" },
   
-    { href: "/sell", label: "Sell" },
+    { href: "/post", label: "Sell" },
   ]
 
   return (
