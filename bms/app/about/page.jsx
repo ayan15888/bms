@@ -14,6 +14,7 @@ export default function AboutPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Back Button */}
       <Button 
         variant="ghost" 
         onClick={() => router.back()} 
@@ -23,8 +24,10 @@ export default function AboutPage() {
         Back
       </Button>
 
+      {/* Page Title */}
       <h1 className="text-4xl font-bold text-center mb-8">About Student Book Exchange</h1>
       
+      {/* Intro Alert */}
       <Alert className="mb-8">
         <Info className="h-4 w-4" />
         <AlertTitle>Welcome to Student Book Exchange!</AlertTitle>
@@ -33,12 +36,15 @@ export default function AboutPage() {
         </AlertDescription>
       </Alert>
 
+      {/* Tabs Section */}
       <Tabs defaultValue="about" className="mb-12">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="about">About Us</TabsTrigger>
           <TabsTrigger value="benefits">Benefits</TabsTrigger>
           <TabsTrigger value="how-it-works">How It Works</TabsTrigger>
         </TabsList>
+        
+        {/* About Us Tab */}
         <TabsContent value="about">
           <Card>
             <CardHeader>
@@ -53,6 +59,8 @@ export default function AboutPage() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        {/* Benefits Tab */}
         <TabsContent value="benefits">
           <div className="grid md:grid-cols-3 gap-6">
             <Card>
@@ -98,6 +106,8 @@ export default function AboutPage() {
             </Card>
           </div>
         </TabsContent>
+
+        {/* How It Works Tab */}
         <TabsContent value="how-it-works">
           <Card>
             <CardHeader>
@@ -142,6 +152,7 @@ export default function AboutPage() {
         </TabsContent>
       </Tabs>
 
+      {/* Call to Action */}
       <div className="text-center">
         <h2 className="text-2xl font-semibold mb-4">Ready to start saving?</h2>
         <Button asChild size="lg">
